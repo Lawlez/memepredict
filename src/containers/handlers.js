@@ -23,14 +23,52 @@ export const onSubmit = (
     }
     console.log('player not set')
 }
+export const postToTwitter = () => {
 
+    let OAuth = require('oauth')
+
+    let twitter_application_consumer_key = '26qUEcPUyQvP7gGqiWKMPfqz1'  // API Key
+    let twitter_application_secret = 'JWdIkOxGAiVIHNJsnslkKotF0jPrUd2JIF3PaSwdWOcpg4ZKZU'  // API Secret
+    let twitter_user_access_token = '778182221085700100-lYXdGCk4iEEFs3QMqXU4BNn2uXLAWrF'  // Access Token
+    let twitter_user_secret = '8SiJxNgw1XyFiHvjHNMRkmYHjBQ99ItY35LoKvNoAfJsc'  // Access Token Secret
+
+    let oauth = new OAuth.OAuth(
+        'https://api.twitter.com/oauth/request_token',
+        'https://api.twitter.com/oauth/access_token',
+        twitter_application_consumer_key,
+        twitter_application_secret,
+        '1.0A',
+        null,
+        'HMAC-SHA1'
+    )
+
+    let status = 'test '  // This is the tweet (ie status)
+
+    let postBody = {
+        'status': status
+    }
+
+    // console.log('Ready to Tweet article:\n\t', postBody.status);
+    oauth.post('https://api.twitter.com/1.1/statuses/update.json',
+        twitter_user_access_token,  // oauth_token (user access token)
+        twitter_user_secret,  // oauth_secret (user secret)
+        postBody,  // post body
+        '',  // post content type ?
+        function(err, data, res) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(data)
+            }
+        })
+}
 export const getDankMemes = async (setMemes) => {
     let posts = []
     let redditData
     let memes = []
     let classes = 'meme shake-slow shake-constant'
     const format = (data) => {
-        for (var i = 2; i < data.length; i++) {
+        for (let i = 2; i < data.length; i++) {
             //start at 2 to ignore pinned posts
             posts.push(data[i].data.url)
         }

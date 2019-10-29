@@ -13,6 +13,7 @@ require('babel-polyfill') //to make async work with webpack
 import { } from '../components'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {postToTwitter} from './handlers'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -186,22 +187,28 @@ export const App = (props) => {
                 <div>
                     <Container>
                         
-
+                        <Paper className={classes.paper}>
+                            <Button variant="outlined" color="primary" onClick={()=>{''}}>TEST_WS_CONNECTION</Button>
+                        </Paper>
                     </Container>
-                    <Container className="fieldContainer">
+                    <Container >
                         <Grid container>
                             <Grid
                                 item
                                 xs={6}
-                                className={'gameField1 '}
                             >
                                 <Paper className={classes.paper}>
-                                    <Button variant="outlined" color="primary" onClick={()=>{getDankMemes()}}>GET_API</Button>
+                                    <Button variant="outlined" color="primary" onClick={()=>{getDankMemes()}}>GET_RDDIT_API</Button>
                                 </Paper>
                             </Grid>
                             <Grid item xs={6} className="playField2">
                                 <Paper className={classes.paper}>
-                                    <Button variant="outlined" color="primary" onClick={()=>{handleClick()}}>TEST_API</Button>
+                                    <Button variant="outlined" color="primary" onClick={()=>{handleClick()}}>TEST_FB_API</Button>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={6} className="playField2">
+                                <Paper className={classes.paper}>
+                                    <Button variant="outlined" color="primary" onClick={()=>{postToTwitter()}}>TEST_TW_API</Button>
                                 </Paper>
                             </Grid>
                         </Grid>
