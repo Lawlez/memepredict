@@ -1,0 +1,12 @@
+{
+  "debug": true,
+  "prettier_options": {
+    "tabWidth": 4,
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all",
+    "jsxSingleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  }
+}
