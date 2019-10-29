@@ -36,6 +36,24 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const App = (props) => {
+    useEffect(() => {
+        // Now that we've initialized the JavaScript SDK, we call
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response)
+        })
+      
+        // Load the SDK asynchronously
+    })
     const classes = useStyles()
     const newSnackBar = (text, actionText, type) => {
         props.createSnackbar({
@@ -98,41 +116,7 @@ export const App = (props) => {
         FB.login(checkLoginState())
     }
 
-    useEffect(() => {
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '<YOUR_APP_ID>',
-                cookie     : true,  // enable cookies to allow the server to access
-                // the session
-                xfbml      : true,  // parse social plugins on this page
-                version    : 'v2.1' // use version 2.1
-            })
-      
-            // Now that we've initialized the JavaScript SDK, we call
-            // FB.getLoginStatus().  This function gets the state of the
-            // person visiting this page and can return one of three states to
-            // the callback you provide.  They can be:
-            //
-            // 1. Logged into your app ('connected')
-            // 2. Logged into Facebook, but not your app ('not_authorized')
-            // 3. Not logged into Facebook and can't tell if they are logged into
-            //    your app or not.
-            //
-            // These three cases are handled in the callback function.
-            FB.getLoginStatus(function(response) {
-                this.statusChangeCallback(response)
-            }.bind(this))
-        }.bind(this);
-      
-        // Load the SDK asynchronously
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0]
-            if (d.getElementById(id)) return
-            js = d.createElement(s); js.id = id
-            js.src = '//connect.facebook.net/en_US/sdk.js'
-            fjs.parentNode.insertBefore(js, fjs)
-        }(document, 'script', 'facebook-jssdk'))
-    })
+    
     ////// Websocket functions start////////////////////*
     /*
     client.onopen = () => {
@@ -168,12 +152,8 @@ export const App = (props) => {
         }
     }
     */
-    const facebook = () => {
-        
-    }
-    facebook()
     ////// Websocket functions end///////////////////
-    const getDankMemes = async (setMemes) => {
+    const getDankMemes = async () => {
         let posts = []
         let redditData
         let memes = []
@@ -181,23 +161,21 @@ export const App = (props) => {
         const format = (data) => {
             for (var i = 2; i < data.length; i++) {
                 //start at 2 to ignore pinned posts
-                posts.push(data[i].data.url)
+                posts.push({URL: data[i].data.url, title: data[i].data.title })
             }
             posts.forEach((imageurl) => {
                 memes.push(
                     <img key={imageurl} src={imageurl} className={classes}/>
                 )
             })
-            console.log(memes)
-            return memes
+            console.log(posts)
+            return posts
         }
-        let fetchMemes = await fetch('http://www.reddit.com/r/dankmemes/.json')
+        let fetchMemes = await fetch('https://www.reddit.com/r/dankmemes/.json')
             .then((r) => r.json())
             .then((data) => {redditData = format(data.data.children)
-                setMemes(redditData)
             })
             .catch((e) => console.log('Booo', e))
-        console.log('fetch', fetchMemes)
         return redditData
     }
     return (
