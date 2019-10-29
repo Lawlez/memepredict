@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <!--<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />-->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' browser-update.org; connect-src 'self' ws://192.168.1.203:8080 192.168.100.90 ws://192.168.100.90:80 http://www.reddit.com; img-src 'self' http://www.reddit.com https://i.redd.it https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/ data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; manifest-src 'self'; font-src https://fonts.googleapis.com data: https://fonts.gstatic.com;"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.facebook.com; script-src 'unsafe-inline' https://*.facebook.net/en_US/sdk.js 'self' browser-update.org; connect-src 'self' https://*.facebook.com  ws://192.168.1.203:8080 192.168.100.90 ws://192.168.100.90:80 http://www.reddit.com; img-src https://*.facebook.com 'self' http://www.reddit.com https://i.redd.it https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/ data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; manifest-src 'self'; font-src https://fonts.googleapis.com data: https://fonts.gstatic.com;"/>
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <!--<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />-->
@@ -12,5 +12,6 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
   </body>
 </html>

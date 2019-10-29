@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 //const Analyzer = require('webpack-bundle-analyzer')
 
@@ -69,6 +70,10 @@ module.exports = {
         hot: true,
         open: true,
         port: 3000,
+        https: {
+            key: fs.readFileSync('../SSL/key.pem'),
+            cert: fs.readFileSync('../SSL/cert.pem'),
+        },
         host: '0.0.0.0',
     },
 }
