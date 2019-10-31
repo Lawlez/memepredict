@@ -1,7 +1,10 @@
-const userReducer = (state = {
-    isLoggedIn: true,
-    userName: null,
-}, action ) =>{
+const userReducer = (
+    state = {
+        isLoggedIn: true,
+        userName: null
+    },
+    action
+) => {
     switch (action.type) {
     case 'SET_USER_NAME':
         state = {
