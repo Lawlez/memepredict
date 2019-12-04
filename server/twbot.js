@@ -6,7 +6,7 @@ var fs = require('fs');
 var request = require('request');
 // Set up your search parameters
 var params = {
-  q: '#memebot',
+  q: '#dankmemes',
   count: 3,
   result_type: 'recent',
   lang: 'en'
@@ -75,9 +75,9 @@ T.post('media/upload', {media: data}, function(error, media, response) {
         .catch(e => console.log('Booo', e))
     return redditData
 }
-console.log(getDankMemes())
+//console.log(getDankMemes())
 
-
+let Timer = setInterval(()=>{getDankMemes()}, 250000000)
 
 // Initiate your search using the above paramaters
 T.get('search/tweets', params, function(err, data, response) {
