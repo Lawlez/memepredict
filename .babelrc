@@ -1,21 +1,33 @@
-{   
-  "presets": [
-    ["env", {
-      "targets": {
-        "node": "current",
-        "edge": "18",
-        "firefox": "66",
-        "chrome": "71",
-        "safari": "12"
-      }
-    }],
-    "@babel/react"
-  ],
-  "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-transform-regenerator",
-    "@babel/plugin-proposal-object-rest-spread",
-    "syntax-async-functions"
-  ]
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ],
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-object-rest-spread",
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "absoluteRuntime": false,
+                "corejs": false,
+                "helpers": false,
+                "regenerator": true,
+                "useESModules": true
+            }
+        ]
+    ]
 }
