@@ -39,7 +39,7 @@ download(imageurl.URL, `${imageurl.title}.png`, function(){
         })
         posts.forEach((imageurl) => {
             // Load your image
-var data = require('fs').readFileSync(`${imageurl.title}.png`);
+var data = require('fs').readFileSync(`memes/${imageurl.title}.png`);
 // Make post request on media endpoint. Pass file data as media parameter
 T.post('media/upload', {media: data}, function(error, media, response) {
   if (!error) {
@@ -47,15 +47,21 @@ T.post('media/upload', {media: data}, function(error, media, response) {
     console.log(media);
     // Lets tweet it
     var status = {
-      status: 'test #memepredict #memebot',
+      status: 'test #memepredict #memebot #dankmemes',
       media_ids: media.media_id_string // Pass the media id string
     }
+
     T.post('statuses/update', status, function(error, tweet, response) {
       if (!error) {
         console.log(tweet);
+      }else{
+          console.log(error)
       }
     });
-  }
+  }else{
+    console.log(error)
+}
+
 });
         })
         
@@ -69,7 +75,7 @@ T.post('media/upload', {media: data}, function(error, media, response) {
         .catch(e => console.log('Booo', e))
     return redditData
 }
-//console.log(getDankMemes())
+console.log(getDankMemes())
 
 
 
