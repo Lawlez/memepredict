@@ -10,6 +10,7 @@
     "css-loader": "^3.2.0",
     "material-ui": "^0.20.2",
     "mini-css-extract-plugin": "^0.8.0",
+    "node-fetch": "^2.6.0",
     "notistack": "^0.9.4",
     "oauth": "^0.9.15",
     "react": "^16.9.0",

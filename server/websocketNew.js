@@ -3,6 +3,7 @@
 import http from 'http'
 import * as CONFIG from '../src/config.json'
 import { getUniqueID, userRegisterHandler } from './srvHelpers'
+const Twitter = require('twitter')
 export class WebSocket {
     constructor() {
         this.clients = []
@@ -15,6 +16,8 @@ export class WebSocket {
         this.wsServer = new this.webSocketServer({ httpServer: this.server })
         this.wsServer.on('request', this.handleConnection.bind(this))
     }
+
+    
 
     start() {
         console.time('started in')
@@ -134,6 +137,23 @@ export class WebSocket {
         this.clients[index] = client
     }
 
+    client = new Twitter({
+        consumer_key: process.env.TWITTER_CONSUMER_KEY,
+        consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+      })
+      /*
+client.get(path, params, callback);
+client.post(path, params, callback);
+client.stream(path, params, callback);
+
+      */
+     client.get('favorites/list', function(error, tweets, response) {
+        if(error) throw error;
+        console.log(tweets);  // The favorites.
+        console.log(response);  // Raw response object.
+      })
 
 }
 
