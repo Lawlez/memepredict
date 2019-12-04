@@ -26,7 +26,7 @@ const getDankMemes = () => {
       };
 
     const format = data => {
-        for (var i = 3; i < 6; i++) {
+        for (var i = 2; i < 4; i++) {
             //start at 2 to ignore pinned posts
             posts.push({ URL: data[i].data.url, title: data[i].data.title })
         }
@@ -77,7 +77,19 @@ T.post('media/upload', {media: data}, function(error, media, response) {
 }
 //console.log(getDankMemes())
 
-let Timer = setInterval(()=>{getDankMemes()}, 250000)
+//let Timer = setInterval(()=>{getDankMemes()}, 15000)
+
+var nextDate = new Date();
+if (nextDate.getMinutes() === 0) { // You can check for seconds here too
+    getDankMemes()
+} else {
+    nextDate.setHours(nextDate.getHours() + 1);
+    nextDate.setMinutes(0);
+    nextDate.setSeconds(0);// I wouldn't do milliseconds too ;)
+
+    var difference = nextDate - new Date();
+    setTimeout(getDankMemes, difference);
+}
 
 // Initiate your search using the above paramaters
 T.get('search/tweets', params, function(err, data, response) {
