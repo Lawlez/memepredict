@@ -110,36 +110,5 @@ export const sendMessage = (
     console.log(json)
     client.send(JSON.stringify(json))
 }
-///// game move //////
-export const handleUserInput = (input, position, userName, playerNumber) => {
-    sendMessage(userName, playerNumber, 'gamemove', '', input, position)
-}
 
-export const sendChatMessage = (msg, userName, playerNumber) => {
-    sendMessage(userName, playerNumber, 'chat', msg)
-}
-
-///// Game Functions /////
-export const resetGame = (userName, playerNumber) => {
-    sendMessage(userName, playerNumber, 'resetgame')
-}
-
-export const deleteValue = (cell, userName, playerNumber) => {
-    sendMessage(userName, playerNumber, 'gamemove', '', '', cell)
-}
-
-export const endGame = (userName, playerNumber, fieldInput, time, newSnackBar) => {
-    if (!fieldInput) {
-        newSnackBar('fill the board first bro','ok sorry', 'warning')
-        return
-    } else if (Object.keys(fieldInput).length < 5) {
-        newSnackBar('fill at least some values','ok sorry', 'warning')
-        return
-    }
-    sendMessage(userName, Number(playerNumber), 'endgame', time)
-}
-///////// ATTACK function////////
-export const launchAttack = (userName, playerNumber) => {
-    sendMessage(userName, playerNumber, 'attack')
-}
 

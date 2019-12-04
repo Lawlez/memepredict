@@ -24,12 +24,7 @@ export class WebSocket {
         )
         console.table({
             SRV_PORT: CONFIG.SRV_PORT,
-            INITIAL_BOARD: CONFIG.INITIAL_BOARD,
-            COOLDOWN: CONFIG.COOLDOWN,
-            ATTACK_DURATION: CONFIG.ATTACK_DURATION,
             DEV_ENV: CONFIG.DEV_ENV,
-            HIGHSCORE_FILE: CONFIG.HIGHSCORE_FILE,
-            SCORE_EQUATION: CONFIG.SCORE_EQUATION
         })
         console.table(CONFIG.attackTypes)
         console.groupEnd()
