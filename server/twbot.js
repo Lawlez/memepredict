@@ -26,7 +26,7 @@ const getDankMemes = () => {
       };
 
     const format = data => {
-        for (var i = 2; i < 12; i++) {
+        for (var i = 3; i < 6; i++) {
             //start at 2 to ignore pinned posts
             posts.push({ URL: data[i].data.url, title: data[i].data.title })
         }
@@ -39,7 +39,7 @@ download(imageurl.URL, `${imageurl.title}.png`, function(){
         })
         posts.forEach((imageurl) => {
             // Load your image
-var data = require('fs').readFileSync(`memes/${imageurl.title}.png`);
+var data = fs.readFileSync(`memes/${imageurl.title}.png`);
 // Make post request on media endpoint. Pass file data as media parameter
 T.post('media/upload', {media: data}, function(error, media, response) {
   if (!error) {
@@ -47,7 +47,7 @@ T.post('media/upload', {media: data}, function(error, media, response) {
     console.log(media);
     // Lets tweet it
     var status = {
-      status: 'test #memepredict #memebot #dankmemes',
+      status: imageurl.title + ' #memepredict #memes #funny #nodejs #memebot #dankmemes',
       media_ids: media.media_id_string // Pass the media id string
     }
 
@@ -77,7 +77,7 @@ T.post('media/upload', {media: data}, function(error, media, response) {
 }
 //console.log(getDankMemes())
 
-let Timer = setInterval(()=>{getDankMemes()}, 250000000)
+let Timer = setInterval(()=>{getDankMemes()}, 250000)
 
 // Initiate your search using the above paramaters
 T.get('search/tweets', params, function(err, data, response) {
