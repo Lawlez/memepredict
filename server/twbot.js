@@ -6,10 +6,10 @@ var fs = require('fs');
 var request = require('request');
 // Set up your search parameters
 var params = {
-  q: '#dankmemes',
-  count: 3,
+  q: '#memes',
+  count: 75,
   result_type: 'recent',
-  lang: 'en'
+  //lang: 'de'
 }
 const getDankMemes = () => {
     let posts = []
@@ -26,7 +26,7 @@ const getDankMemes = () => {
       };
 
     const format = data => {
-        for (var i = 2; i < 4; i++) {
+        for (var i = 2; i < 10; i++) {
             //start at 2 to ignore pinned posts
             posts.push({ URL: data[i].data.url, title: data[i].data.title })
         }
@@ -77,21 +77,37 @@ T.post('media/upload', {media: data}, function(error, media, response) {
 }
 //console.log(getDankMemes())
 
-//let Timer = setInterval(()=>{getDankMemes()}, 15000)
+let i = 0
+const fn = () => {
+  getDankMemes()
+  setInterval(()=>{getDankMemes(); i++}, 30 * 6000)
+if (i >= 3){
+  clearInterval(fn)
+}
+}
 
-var nextDate = new Date();
+fn()
+
+
+console.log('...data')
+
+
+//let Timer = setInterval(()=>{getDankMemes()}, 15000)
+/*
+  var nextDate = new Date();
 if (nextDate.getMinutes() === 0) { // You can check for seconds here too
     getDankMemes()
 } else {
     nextDate.setHours(nextDate.getHours() + 1);
     nextDate.setMinutes(0);
-    nextDate.setSeconds(0);// I wouldn't do milliseconds too ;)
+    nextDate.setSeconds(0);
 
     var difference = nextDate - new Date();
     setTimeout(getDankMemes, difference);
 }
-
+*/
 // Initiate your search using the above paramaters
+
 T.get('search/tweets', params, function(err, data, response) {
   // If there is no error, proceed
   if(!err){
