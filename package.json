@@ -11,7 +11,7 @@
     "material-ui": "^0.20.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-fetch": "^2.6.0",
-    "notistack": "^0.9.4",
+    "notistack": "^0.9.16",
     "oauth": "^0.9.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
