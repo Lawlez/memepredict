@@ -14,7 +14,7 @@
     "notistack": "^0.9.4",
     "oauth": "^0.9.15",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react-dom": "^16.13.0",
     "react-redux": "^7.1.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.5",
