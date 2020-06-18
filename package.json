@@ -21,7 +21,7 @@
     "style-loader": "^1.0.0",
     "twitter": "^1.7.1",
     "webpack-bundle-analyzer": "^3.5.2",
-    "websocket": "^1.0.30"
+    "websocket": "^1.0.31"
   },
   "scripts": {
     "lint": "eslint './src/**/*.js'",
