@@ -20,7 +20,7 @@
     "redux": "^4.0.5",
     "style-loader": "^1.0.0",
     "twitter": "^1.7.1",
-    "webpack-bundle-analyzer": "^3.5.2",
+    "webpack-bundle-analyzer": "^4.4.0",
     "websocket": "^1.0.31"
   },
   "scripts": {
